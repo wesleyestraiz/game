@@ -1,15 +1,32 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.util.Random;
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
+        int numeroCorreto = random.nextInt(10) + 1;
+        int tentativas = 0;
+        int numeroDigitado;
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        do {
+            System.out.println("Digite um número entre 1 e 10: ");
+            numeroDigitado = scanner.nextInt();
+            tentativas++;
+
+            if (numeroDigitado >= 11 || numeroDigitado <= 0) {
+                System.out.println("Este número é divergente ao solicitado, por favor, tente novamente! ");
+            }
+            else if (numeroDigitado < numeroCorreto) {
+                System.out.println("O número é maior. Tente novamente! ");
+            } else if (numeroDigitado > numeroCorreto) {
+                System.out.println("O número é menor. Tente novamente! ");
+            }
+
+        } while (numeroDigitado != numeroCorreto);
+
+        System.out.println("Parabéns! Você acertou em " + tentativas + " tentativas");
+
+        scanner.close();
     }
 }
